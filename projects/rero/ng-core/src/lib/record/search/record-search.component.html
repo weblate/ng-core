@@ -79,6 +79,22 @@
             </li>
           </ul>
         </div>
+        <ng-container *ngIf="searchFields.length > 0 && q">
+          <div class="btn-group ml-2" dropdown>
+            <button dropdownToggle type="button" class="btn btn-light rounded">
+              <i class="fa fa-filter"></i>
+              <span class="ml-1" *ngIf="selectedSearchFields.length > 0">{{ selectedSearchFields[0].label }}</span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li *ngFor="let field of searchFields">
+                <a href="#" class="dropdown-item" [ngClass]="{ 'active': field.selected }"
+                  (click)="$event.preventDefault(); searchInField(field)">
+                  {{ field.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
         <div class="btn-group ml-2" dropdown>
           <button
             id="button-basic"
